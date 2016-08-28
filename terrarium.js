@@ -1,12 +1,13 @@
 var wall = {};
 
+wall.character = "#";
+StupidBug.prototype.character = "o";
+
 function elementFromCharacter(character) {
-  if (character == " ")
-    return undefined;
-  else if (character == "#")
-    return wall;
-  else if (character == "o")
-    return new StupidBug();
+  if (element == undefined)
+    return " ";
+  else
+    return element.character;
 }
 
 function Terrarium(plan) {
