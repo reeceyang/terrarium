@@ -62,3 +62,19 @@ Terrarium.prototype.listSurroundings = function(center) {
   });
   return result;
 };
+
+Terrarium.prototype.processCreature = function(creature) {
+  var action = creature.object.act(this.listSurroundings(creature.point));
+  if (action.type == "move" && directions.contains(action.direction)) {
+    var to = point.add(directions.lookup(action.direction));
+    if (this.grid.isInside(to) && this.grid.valueAt(to) == undefined)
+      this.grid.moveValue(creature.point, to);
+  }
+  else {
+    throw new Error("Unsupported action: " + action.type);
+  }
+
+
+Terrarium.prototype.step = function() {
+  forEach(this.listActingCreatures(), bind(this.processCreature, this));
+};
