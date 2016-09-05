@@ -17,8 +17,10 @@
     <script src="print.js"></script>
     <script>
       var terrarium = new Terrarium(thePlan);
-      terrarium.step();
-      print(terrarium);
+      setInterval(function(){
+        terrarium.step();
+        print(terrarium);
+      }, 1000);
     </script>
   </body>
 </html>
