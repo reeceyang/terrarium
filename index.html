@@ -18,6 +18,7 @@
       setInterval(function(){
         document.body.innerHTML = "";
         terrarium.step();
+        var output = dom("DIV", {id: "printOutput"});
         print(terrarium);
       }, 1000);
     </script>
