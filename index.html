@@ -15,7 +15,6 @@
     <script src="print.js"></script>
     <script>
       var terrarium = new Terrarium(thePlan);
-      setTimeout(function(){}, 1000);
       setInterval(function(){
         document.getElementById("printOutput").innerHTML = "";
         terrarium.step();
@@ -24,5 +23,8 @@
     </script>
   </head>
   <body>
+	<script>
+		document.body.appendChild(output);
+	</script>
   </body>
 </html>
