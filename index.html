@@ -16,9 +16,8 @@
     <script>
       var terrarium = new Terrarium(thePlan);
       setInterval(function(){
-        document.body.innerHTML = "";
+        document.getElementById("printOutput").innerHTML = "";
         terrarium.step();
-        var output = dom("DIV", {id: "printOutput"});
         print(terrarium);
       }, 1000);
     </script>
