@@ -17,6 +17,7 @@
       var terrarium = new Terrarium(thePlan);
       setInterval(function(){
         document.getElementById("printOutput").innerHTML = "";
+        document.body.appendChild(output);
         terrarium.step();
         print(terrarium);
       }, 1000);
