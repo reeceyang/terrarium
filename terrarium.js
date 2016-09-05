@@ -66,7 +66,8 @@ Terrarium.prototype.listSurroundings = function(center) {
 Terrarium.prototype.processCreature = function(creature) {
   var action = creature.object.act(this.listSurroundings(creature.point));
   if (action.type == "move" && directions.contains(action.direction)) {
-    var to = point.add(directions.lookup(action.direction));
+    // book error?
+    var to = creature.point.add(directions.lookup(action.direction));
     if (this.grid.isInside(to) && this.grid.valueAt(to) == undefined)
       this.grid.moveValue(creature.point, to);
   }
