@@ -1,22 +1,27 @@
 var wall = {};
 
 function elementFromCharacter(character) {
-  if (character == "")
+  if (character == "") {
     return undefined;
-  else if (character == "#")
+  }
+  else if (character == "#") {
     return wall;
-  else if (character == "o")
+  }
+  else if (character == "o") {
     return new StupidBug();
+  }
 }
 
 wall.character = "#";
 StupidBug.prototype.character = "o";
 
 function characterFromElement(element) {
-  if (element == undefined)
+  if (element == undefined) {
     return " ";
-  else
+  }
+  else {
     return element.character;
+  }
 }
 
 function Terrarium(plan) {
@@ -35,8 +40,9 @@ Terrarium.prototype.toString = function() {
   var endOfLine = this.grid.width - 1;
   this.grid.each(function(point, value) {
     characters.push(characterFromElement(value));
-    if (point.x == endOfLine)
+    if (point.x == endOfLine) {
       characters.push("\n");
+    }
   });
   return characters.join("");
 }
@@ -44,8 +50,9 @@ Terrarium.prototype.toString = function() {
 Terrarium.prototype.listActingCreatures = function() {
   var found = [];
   this.grid.each(function(point, value){
-    if (value != undefined && value.act)
+    if (value != undefined && value.act) {
       found.push({object: value, point: point});
+    }
   });
   return found;
 };
@@ -55,10 +62,12 @@ Terrarium.prototype.listSurroundings = function(center) {
   var grid = this.grid;
   directions.each(function(name, direction) {
     var place = center.add(direction);
-    if (grid.isInside(place))
+    if (grid.isInside(place)) {
       result[name] = characterFromElement(grid.valueAt(place));
-    else
+    }
+    else {
       result[name] = "#";
+    }
   });
   return result;
 };
@@ -68,8 +77,9 @@ Terrarium.prototype.processCreature = function(creature) {
   if (action.type == "move" && directions.contains(action.direction)) {
     // book error?
     var to = creature.point.add(directions.lookup(action.direction));
-    if (this.grid.isInside(to) && this.grid.valueAt(to) == undefined)
+    if (this.grid.isInside(to) && this.grid.valueAt(to) == undefined) {
       this.grid.moveValue(creature.point, to);
+    }
   }
   else {
     throw new Error("Unsupported action: " + action.type);
