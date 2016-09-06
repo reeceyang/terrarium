@@ -1,5 +1,4 @@
 var output = dom("DIV", {id: "printOutput"});
-document.body.appendChild(output);
 
 function print() {
   var result = [];
